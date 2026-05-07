@@ -4,7 +4,7 @@ export const siteConfig = {
   // SVG は mask-image として使われ、塗りはテーマトークン (foreground) で行う。
   logo: "/katari.svg",
   description: "A language for orchestrating agents.",
-  url: "https://katari.dev",
+  url: "https://katari-lang.dev",
   copyright: "yukikurage",
   copyrightYear: 2026,
   // 仮 URL。実際のリポジトリに合わせて差し替える。
