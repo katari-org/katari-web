@@ -7,6 +7,7 @@ import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypePrettyCode from "rehype-pretty-code";
 import { getDoc, listAllSlugs } from "@/lib/docs";
 import { mdxComponents } from "@/components/mdx/components";
+import { CopyMarkdownButton } from "@/components/docs/copy-markdown-button";
 
 type Props = {
   params: Promise<{ version: string; slug: string[] }>;
@@ -58,12 +59,23 @@ export default async function DocPage({ params }: Props) {
     },
   });
 
+  const markdownText = [
+    `# ${doc.frontmatter.title}`,
+    doc.frontmatter.description ?? "",
+    doc.body,
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+
   return (
     <article className="mx-auto max-w-3xl">
       <header className="mb-8 space-y-4 pb-4 border-b border-border">
-        <h1 className="text-4xl font-display-text font-bold tracking-tight text-highlight">
-          {doc.frontmatter.title}
-        </h1>
+        <div className="flex items-start justify-between gap-4">
+          <h1 className="text-4xl font-display-text font-bold tracking-tight text-highlight">
+            {doc.frontmatter.title}
+          </h1>
+          <CopyMarkdownButton markdown={markdownText} />
+        </div>
         {doc.frontmatter.description && (
           <p className="text-base text-muted-foreground">
             {doc.frontmatter.description}

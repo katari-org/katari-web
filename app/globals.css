@@ -42,8 +42,6 @@
   --color-paper-800: oklch(0.362 0.01 73.58);
   --color-paper-900: oklch(0.267 0.007 67.52);
   --color-paper-950: oklch(0.223 0.007 78.18);
-
-  --drop-shadow-hero: 0 0 50rem var(--color-paper-400);
 }
 
 /* === Role-based tokens (light モード) =====================================
@@ -101,15 +99,18 @@
   --color-ring: var(--ring);
 
   --font-sans:
-    var(--font-noto-sans), var(--font-noto-sans-jp), system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+    var(--font-dm-sans), var(--font-noto-sans-jp), system-ui, sans-serif;
+  --font-mono: var(--font-dm-mono), ui-monospace, monospace;
   /* ブランド名 "Katari" 表示専用。Lexend Tera の Black (900) のみ。 */
   --font-display: var(--font-lexend-tera);
-  --font-display-text: var(--font-lexend);
+  --font-display-text-base: var(--font-lexend);
 }
 
-* {
-  border-color: var(--border);
+@layer utilities {
+  .font-display-text {
+    font-family: var(--font-display-text-base);
+    font-variation-settings: "HEXP" 20;
+  }
 }
 
 html,
@@ -120,7 +121,7 @@ body {
 
 body {
   font-family:
-    var(--font-noto-sans), var(--font-noto-sans-jp), system-ui, sans-serif;
+    var(--font-dm-sans), var(--font-noto-sans-jp), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -130,16 +131,19 @@ body {
 }
 
 /* === rehype-pretty-code (Shiki) =========================================== */
+[data-rehype-pretty-code-figure] {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 [data-rehype-pretty-code-figure] pre {
   padding: 1rem;
   border: 0px solid var(--border);
   background-color: var(--muted);
   overflow-x: auto;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-family: var(--font-dm-mono), ui-monospace, monospace;
   font-size: 0.875rem;
   line-height: 1.6;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
 }
 
 [data-rehype-pretty-code-figure] code {
@@ -174,18 +178,14 @@ html.dark [data-rehype-pretty-code-figure] pre code span {
 }
 
 [data-rehype-pretty-code-title] {
-  margin-bottom: -0.5rem;
-  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0 0 0 4px;
+  min-height: 2rem;
   font-size: 0.75rem;
-  font-family: var(--font-geist-mono), ui-monospace, monospace;
-  color: var(--muted-foreground);
-  background-color: var(--muted);
-  border: 0px solid var(--border);
-  border-bottom: none;
-  border-radius: 0.5rem 0.5rem 0 0;
-}
-
-[data-rehype-pretty-code-title] + pre {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
+  font-family: var(--font-dm-mono), ui-monospace, monospace;
+  color: var(--foreground);
+  background-color: var(--background);
 }

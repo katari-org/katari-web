@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ComponentProps } from "react";
 import type { MDXComponents } from "mdx/types";
+import { CodeBlockPre } from "@/components/mdx/code-block-figure";
 
 function isInternalHref(href: string): boolean {
   return href.startsWith("/") || href.startsWith("#");
@@ -70,6 +71,15 @@ export const mdxComponents: MDXComponents = {
     />
   ),
   td: (props) => <td className="border border-border px-3 py-2" {...props} />,
+  // rehype-pretty-code が生成する <pre> (data-language 付き) は CodeBlockPre で
+  // wrap してコピーボタンを右上に表示する。素の <pre> は素通し。
+  pre: (props) => {
+    const isCodeBlock = "data-language" in (props as Record<string, unknown>);
+    if (isCodeBlock) {
+      return <CodeBlockPre {...props} />;
+    }
+    return <pre {...props} />;
+  },
   // インラインコード。コードブロック (language-* クラス付き) には何もしない。
   code: ({ className, ...rest }) => {
     const isBlock =
@@ -79,7 +89,7 @@ export const mdxComponents: MDXComponents = {
     }
     return (
       <code
-        className={`bg-muted px-1.5 py-0.5 font-mono text-[0.9em] ${className ?? ""}`}
+        className={`px-1.5 py-0.5 font-mono text-sm ${className ?? ""}`}
         {...rest}
       />
     );

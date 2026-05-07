@@ -41,10 +41,14 @@ export default function Home() {
   return (
     <>
       <section className="flex flex-1 flex-col items-center justify-center px-6 py-32 text-center sm:py-32 relative gap-24 min-h-[70vh]">
+        <span
+          aria-hidden
+          className="fixed pointer-events-none top-1/3 -translate-y-1/2 left-1/2 -translate-x-1/2 size-600 -z-2 rounded-full bg-[radial-gradient(closest-side,var(--muted),transparent_70%)]"
+        />
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-24">
           <div className="mx-auto flex max-w-full flex-col items-center gap-6">
             <h1 className="font-display font-black tracking-tight text-6xl sm:text-7xl md:text-8xl flex flex-col items-center justify-center">
-              <LogoMark className="absolute size-60 md:size-72 text-background -z-1 drop-shadow-hero/60" />
+              <LogoMark className="absolute size-60 md:size-72 text-background -z-1" />
               KATARI
             </h1>
 
@@ -69,7 +73,7 @@ export default function Home() {
             href={siteConfig.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-11 items-center justify-center border border-border-strong px-6 text-base font-display-text font-normal transition-all hover:bg-muted"
+            className="inline-flex h-11 items-center justify-center border border-border px-6 text-base font-display-text font-normal transition-all hover:bg-muted hover:border-border-strong"
           >
             View on GitHub
           </Link>

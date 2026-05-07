@@ -122,7 +122,7 @@ function DialogContent({
 
   return (
     <div
-      className="w-full max-w-xl overflow-hidden bg-background shadow-2xl border boreder-border"
+      className="w-full max-w-xl overflow-hidden bg-background shadow-2xl border border-border"
       onClick={(e) => e.stopPropagation()}
     >
       <div className="flex items-center gap-2 px-4 py-3">
@@ -262,7 +262,7 @@ export function SearchTrigger({ version }: { version: string }) {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Search docs"
-        className="inline-flex h-9 w-full max-w-65 items-center gap-2 border border-border px-3 text-sm text-muted-foreground hover:cursor-text"
+        className="inline-flex h-9 w-full max-w-65 items-center gap-2 border border-border hover:border-border-strong transition-all px-3 text-sm text-muted-foreground hover:cursor-text"
       >
         <SearchIcon className="size-4" />
         <span className="flex-1 text-left"></span>

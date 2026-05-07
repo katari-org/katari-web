@@ -24,7 +24,7 @@ export function SidebarScrollContainer({
       onScroll={(e) => {
         savedScrollTop.current = e.currentTarget.scrollTop;
       }}
-      className="sticky top-20 max-h-[calc(100vh-5rem)] overflow-y-auto overflow-x-visible pr-4"
+      className="sticky top-20 max-h-[calc(100vh-5rem)] overflow-x-visible overflow-y-auto pr-4 pl-1"
     >
       {children}
     </div>
