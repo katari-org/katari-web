@@ -1,26 +1,191 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* === Brand palettes (固定) =================================================
+ * Tailwind v4 の `@theme` ブロックで定義すると、`bg-highlight-500` のような
+ * ユーティリティクラスが自動生成される。
+ */
+@theme {
+  --color-highlight-50: oklch(0.947 0.076 180.56);
+  --color-highlight-100: oklch(0.915 0.129 177.46);
+  --color-highlight-200: oklch(0.866 0.164 174.63);
+  --color-highlight-300: oklch(0.784 0.145 177.7);
+  --color-highlight-400: oklch(0.69 0.124 181.15);
+  --color-highlight-500: oklch(0.608 0.108 183.44);
+  --color-highlight-600: oklch(0.524 0.092 185.91);
+  --color-highlight-700: oklch(0.438 0.076 189.76);
+  --color-highlight-800: oklch(0.346 0.059 193.07);
+  --color-highlight-900: oklch(0.262 0.045 194.76);
+  --color-highlight-950: oklch(0.221 0.038 197.74);
+
+  --color-katari-50: #eeeeee;
+  --color-katari-100: #e2e2e2;
+  --color-katari-200: oklch(0.836 0.001 287.14);
+  --color-katari-300: oklch(0.768 0.007 286.37);
+  --color-katari-400: oklch(0.69 0.013 291.24);
+  --color-katari-500: oklch(0.622 0.019 289.4);
+  --color-katari-600: oklch(0.545 0.028 288.02);
+  --color-katari-700: oklch(0.477 0.034 289.45);
+  --color-katari-800: oklch(0.408 0.035 289.13);
+  --color-katari-900: oklch(0.331 0.033 289.28);
+  --color-katari-950: oklch(0.242 0.023 288.4);
+
+  --color-paper-50: oklch(0.931 0.008 61.49);
+  --color-paper-100: oklch(0.897 0.013 75.35);
+  --color-paper-200: oklch(0.829 0.024 71.74);
+  --color-paper-300: oklch(0.75 0.021 69.91);
+  --color-paper-400: oklch(0.681 0.019 72.98);
+  --color-paper-500: oklch(0.612 0.017 67.5);
+  --color-paper-600: oklch(0.542 0.015 71.19);
+  --color-paper-700: oklch(0.449 0.012 72.52);
+  --color-paper-800: oklch(0.362 0.01 73.58);
+  --color-paper-900: oklch(0.267 0.007 67.52);
+  --color-paper-950: oklch(0.223 0.007 78.18);
+
+  --drop-shadow-hero: 0 0 50rem var(--color-paper-400);
 }
 
+/* === Role-based tokens (light モード) =====================================
+ * light: 文字 = katari (濃い) / 背景 = paper (淡いベージュ、完全白を避ける)
+ * accent: 強調表示は highlight 系統。
+ */
+:root {
+  --background: var(--color-paper-50);
+  --foreground: var(--color-katari-900);
+  --muted: var(--color-paper-100);
+  --muted-foreground: var(--color-katari-600);
+  --subtle-foreground: var(--color-katari-500);
+  --border: var(--color-paper-200);
+  --border-strong: var(--color-paper-300);
+  --card: var(--color-paper-50);
+  --accent: var(--color-katari-900);
+  --accent-foreground: var(--color-paper-50);
+  --highlight: var(--color-highlight-500);
+  --ring: var(--color-highlight-500);
+}
+
+/* === Role-based tokens (dark モード) ======================================
+ * dark: 文字 = 白 (white) / 背景 = katari (深いグレー寄り)
+ */
+.dark {
+  --background: var(--color-katari-950);
+  --foreground: var(--color-katari-50);
+  --muted: var(--color-katari-900);
+  --muted-foreground: var(--color-katari-300);
+  --subtle-foreground: var(--color-katari-400);
+  --border: var(--color-katari-800);
+  --border-strong: var(--color-katari-700);
+  --card: var(--color-katari-900);
+  --accent: var(--color-katari-50);
+  --accent-foreground: var(--color-katari-950);
+  --highlight: var(--color-highlight-400);
+  --ring: var(--color-highlight-400);
+}
+
+/* === Tailwind utility class へ展開 ========================================
+ * `inline` を付けると変数の値がユーティリティに直接展開される。
+ */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-subtle-foreground: var(--subtle-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-card: var(--card);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-highlight: var(--highlight);
+  --color-ring: var(--ring);
+
+  --font-sans:
+    var(--font-noto-sans), var(--font-noto-sans-jp), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  /* ブランド名 "Katari" 表示専用。Lexend Tera の Black (900) のみ。 */
+  --font-display: var(--font-lexend-tera);
+  --font-display-text: var(--font-lexend);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--border);
+}
+
+html,
+body {
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family:
+    var(--font-noto-sans), var(--font-noto-sans-jp), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: color-mix(in oklab, var(--highlight) 30%, transparent);
+}
+
+/* === rehype-pretty-code (Shiki) =========================================== */
+[data-rehype-pretty-code-figure] pre {
+  padding: 1rem;
+  border: 0px solid var(--border);
+  background-color: var(--muted);
+  overflow-x: auto;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+[data-rehype-pretty-code-figure] code {
+  display: grid;
+  counter-reset: line;
+}
+
+[data-rehype-pretty-code-figure] code[data-line-numbers] > [data-line]::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1.5rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: var(--subtle-foreground);
+}
+
+html.dark [data-rehype-pretty-code-figure] pre code span {
+  color: var(--shiki-dark) !important;
+  font-style: var(--shiki-dark-font-style) !important;
+  font-weight: var(--shiki-dark-font-weight) !important;
+  text-decoration: var(--shiki-dark-text-decoration) !important;
+}
+
+[data-rehype-pretty-code-figure] [data-line] {
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+}
+
+[data-rehype-pretty-code-figure] [data-highlighted-line] {
+  background-color: color-mix(in oklab, var(--highlight) 20%, transparent);
+}
+
+[data-rehype-pretty-code-title] {
+  margin-bottom: -0.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  color: var(--muted-foreground);
+  background-color: var(--muted);
+  border: 0px solid var(--border);
+  border-bottom: none;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+[data-rehype-pretty-code-title] + pre {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }

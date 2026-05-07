@@ -1,0 +1,9 @@
+{
+  "label": "Language Reference",
+  "order": [
+    "index",
+    "syntax",
+    "types",
+    "effects"
+  ]
+}

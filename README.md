@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# katari-web
 
-## Getting Started
+Katari project の公式サイト。Next.js 16 (App Router / Turbopack) + Tailwind CSS v4 で構築。
 
-First, run the development server:
+## 開発
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+```sh
+pnpm install
+pnpm dev      # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`pnpm dev` / `pnpm build` は内部で `pnpm run search-index` を呼び、検索インデックスを
+`public/search-index/<version>.json` に生成する。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+その他のスクリプト:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| script | 役割 |
+| --- | --- |
+| `pnpm lint` | ESLint |
+| `pnpm typecheck` | `tsc --noEmit` |
+| `pnpm search-index` | 検索インデックスのみ再生成 |
 
-## Learn More
+## ディレクトリ
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/                    # ルート / docs / [version] / [...slug] のルーティング
+components/
+  site/                 # Header / Footer / Logo / ThemeToggle / icons
+  docs/                 # Sidebar / VersionSwitcher / SearchDialog
+  mdx/                  # Markdown render 用コンポーネントマップ
+  theme-provider.tsx
+content/docs/<version>/<category>/<slug>.md   # ドキュメント本体
+lib/
+  docs.ts               # version / nav / page / search-index のロジック
+  site-config.ts        # サイトメタ・nav / footer link
+public/                 # 画像など。logo-placeholder.svg がロゴ仮置き
+scripts/build-search-index.ts                 # 検索インデックス生成
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ドキュメントの追加 (contributors)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+新しいページを追加するには、以下のディレクトリ構造に従って `.md` を置くだけ:
 
-## Deploy on Vercel
+```
+content/docs/<version>/<category>/<slug>.md
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+各ページは frontmatter を持つ:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```markdown
+---
+title: ページタイトル
+description: ページ説明 (任意)
+---
+
+# ページ内容
+```
+
+並び順を制御したい場合は各ディレクトリに `_meta.json` を置く:
+
+```json
+{
+  "label": "Getting Started",
+  "order": ["index", "installation", "quickstart"]
+}
+```
+
+`_meta.json` がなければファイル名のアルファベット順で並ぶ。新しいバージョンを追加する場合は
+`content/docs/<new-version>/` を作るだけ。サイドバーのバージョン切替は自動で出る。
+
+## 差し替えポイント
+
+- ロゴ画像: `public/logo-placeholder.svg` を上書き、または [components/site/logo.tsx](components/site/logo.tsx) を編集
+- サイトメタ・footer link: [lib/site-config.ts](lib/site-config.ts)
+- カラートークン: [app/globals.css](app/globals.css) の `:root` / `.dark` ブロック
+- Markdown のスタイリング: [components/mdx/components.tsx](components/mdx/components.tsx)
+- Hero コピー / ボタン: [app/page.tsx](app/page.tsx)
