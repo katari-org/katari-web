@@ -23,7 +23,7 @@ export function CopyMarkdownButton({ markdown }: { markdown: string }) {
       className="inline-flex h-8 shrink-0 items-center justify-center gap-2 border border-border px-4 text-sm font-normal transition-all hover:bg-muted hover:border-border-strong hover:cursor-pointer"
     >
       {copied ? <Check className="size-4" /> : <Clipboard className="size-4" />}
-      {copied ? "Copied" : "Copy"}
+      Copy
     </button>
   );
 }

@@ -89,7 +89,7 @@ export const mdxComponents: MDXComponents = {
     }
     return (
       <code
-        className={`px-1.5 py-0.5 font-mono text-sm ${className ?? ""}`}
+        className={`px-1.5 py-0.5 font-mono text-sm bg-muted ${className ?? ""}`}
         {...rest}
       />
     );

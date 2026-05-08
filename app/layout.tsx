@@ -1,12 +1,5 @@
 import type { Metadata } from "next";
-import {
-  Lexend_Tera,
-  Lexend,
-  DM_Sans,
-  DM_Mono,
-  Zen_Kaku_Gothic_Antique,
-  Noto_Sans_JP,
-} from "next/font/google";
+import { Lexend_Tera, DM_Sans, DM_Mono, Noto_Sans_JP } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Header } from "@/components/site/header";
 import { Footer } from "@/components/site/footer";

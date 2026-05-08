@@ -16,7 +16,7 @@ export function HeaderShell({ children }: { children: ReactNode }) {
   return (
     <div
       className={cn(
-        "mx-auto flex h-16 w-full max-w-380 items-center gap-4 px-4 sm:px-6 lg:px-8 transition-[background-color,backdrop-filter] duration-200",
+        "mx-auto h-16 w-full transition-[background-color,backdrop-filter] duration-200",
         atTop ? "bg-transparent" : "bg-background/70 backdrop-blur-sm",
       )}
     >

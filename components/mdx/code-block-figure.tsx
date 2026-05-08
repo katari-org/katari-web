@@ -35,7 +35,7 @@ export function CodeBlockPre({
   const ariaLabel = copied ? "Copied" : "Copy code";
 
   return (
-    <div className="group relative">
+    <div className="group relative w-full">
       <pre ref={preRef} className={className} {...rest}>
         {children}
       </pre>

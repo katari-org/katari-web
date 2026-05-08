@@ -32,7 +32,7 @@
   --color-katari-950: oklch(0.242 0.023 288.4);
 
   --color-paper-50: oklch(0.931 0.008 61.49);
-  --color-paper-100: oklch(0.897 0.013 75.35);
+  --color-paper-100: oklch(0.895 0.016 75.35);
   --color-paper-200: oklch(0.829 0.024 71.74);
   --color-paper-300: oklch(0.75 0.021 69.91);
   --color-paper-400: oklch(0.681 0.019 72.98);
@@ -134,16 +134,21 @@ body {
 [data-rehype-pretty-code-figure] {
   margin-top: 1rem;
   margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  width: 100%;
 }
 
 [data-rehype-pretty-code-figure] pre {
   padding: 1rem;
-  border: 0px solid var(--border);
   background-color: var(--muted);
   overflow-x: auto;
   font-family: var(--font-dm-mono), ui-monospace, monospace;
   font-size: 0.875rem;
   line-height: 1.6;
+  width: 100%;
 }
 
 [data-rehype-pretty-code-figure] code {
@@ -181,9 +186,8 @@ html.dark [data-rehype-pretty-code-figure] pre code span {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
-  padding: 0 0 0 4px;
-  min-height: 2rem;
+  padding: 0.25rem 0.25rem 0.5rem 0.5rem;
+  width: auto;
   font-size: 0.75rem;
   font-family: var(--font-dm-mono), ui-monospace, monospace;
   color: var(--foreground);
