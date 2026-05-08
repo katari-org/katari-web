@@ -4,7 +4,7 @@
  */
 import fs from "node:fs";
 import path from "node:path";
-import { buildSearchEntries, listVersions } from "../lib/docs";
+import { buildSearchEntries, listVersions } from "../lib/content";
 
 const outDir = path.join(process.cwd(), "public", "search-index");
 fs.mkdirSync(outDir, { recursive: true });
@@ -18,5 +18,7 @@ for (const version of versions) {
   const entries = buildSearchEntries(version);
   const outPath = path.join(outDir, `${version}.json`);
   fs.writeFileSync(outPath, JSON.stringify(entries));
-  console.log(`[search-index] ${version}: ${entries.length} entries → ${path.relative(process.cwd(), outPath)}`);
+  console.log(
+    `[search-index] ${version}: ${entries.length} entries → ${path.relative(process.cwd(), outPath)}`,
+  );
 }

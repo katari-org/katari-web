@@ -23,40 +23,23 @@ export const mdxComponents: MDXComponents = {
     />
   ),
   h2: (props) => (
-    <h2
-      className="mt-10 scroll-mt-24 pb-2 text-2xl font-semibold tracking-tight"
-      {...props}
-    />
+    <h2 className="mt-10 scroll-mt-24 pb-2 text-2xl font-semibold tracking-tight" {...props} />
   ),
   h3: (props) => (
-    <h3
-      className="mt-8 scroll-mt-24 text-xl font-semibold tracking-tight"
-      {...props}
-    />
+    <h3 className="mt-8 scroll-mt-24 text-xl font-semibold tracking-tight" {...props} />
   ),
   h4: (props) => (
-    <h4
-      className="mt-6 scroll-mt-24 text-lg font-semibold tracking-tight"
-      {...props}
-    />
+    <h4 className="mt-6 scroll-mt-24 text-lg font-semibold tracking-tight" {...props} />
   ),
   p: (props) => <p className="mt-4 leading-7" {...props} />,
   a: (props) => (
-    <MdxLink
-      className="font-medium text-foreground underline underline-offset-4"
-      {...props}
-    />
+    <MdxLink className="font-medium text-foreground underline underline-offset-4" {...props} />
   ),
   ul: (props) => <ul className="mt-4 ml-6 list-disc space-y-1.5" {...props} />,
-  ol: (props) => (
-    <ol className="mt-4 ml-6 list-decimal space-y-1.5" {...props} />
-  ),
+  ol: (props) => <ol className="mt-4 ml-6 list-decimal space-y-1.5" {...props} />,
   li: (props) => <li className="leading-7" {...props} />,
   blockquote: (props) => (
-    <blockquote
-      className="mt-6 border-l-2 border-border-strong pl-4 italic"
-      {...props}
-    />
+    <blockquote className="mt-6 border-l-2 border-border-strong pl-4 italic" {...props} />
   ),
   hr: (props) => <hr className="my-8 border-border" {...props} />,
   table: (props) => (
@@ -65,10 +48,7 @@ export const mdxComponents: MDXComponents = {
     </div>
   ),
   th: (props) => (
-    <th
-      className="border border-border bg-muted px-3 py-2 text-left font-semibold"
-      {...props}
-    />
+    <th className="border border-border bg-muted px-3 py-2 text-left font-semibold" {...props} />
   ),
   td: (props) => <td className="border border-border px-3 py-2" {...props} />,
   // rehype-pretty-code が生成する <pre> (data-language 付き) は CodeBlockPre で

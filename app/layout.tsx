@@ -39,11 +39,12 @@ const lexend = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Katari",
-    template: "%s — Katari",
+    default: siteConfig.name,
+    template: `%s — ${siteConfig.name}`,
   },
-  description: "A language for orchestrating agents.",
+  description: siteConfig.description,
   keywords: [
     "katari",
     "agent orchestration",
@@ -57,6 +58,18 @@ export const metadata: Metadata = {
   icons: {
     icon: siteConfig.logo,
   },
+  openGraph: {
+    type: "website",
+    siteName: siteConfig.name,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    url: siteConfig.url,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+  },
 };
 
 export default function RootLayout({
@@ -66,7 +79,7 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang={siteConfig.locale}
       suppressHydrationWarning
       className={`${lexend.variable} ${lexendTera.variable} ${dmMono.variable} ${dmSans.variable} ${notoSansJP.variable}`}
     >

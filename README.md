@@ -14,11 +14,13 @@ pnpm dev      # http://localhost:3000
 
 その他のスクリプト:
 
-| script | 役割 |
-| --- | --- |
-| `pnpm lint` | ESLint |
-| `pnpm typecheck` | `tsc --noEmit` |
-| `pnpm search-index` | 検索インデックスのみ再生成 |
+| script              | 役割                            |
+| ------------------- | ------------------------------- |
+| `pnpm lint`         | ESLint                          |
+| `pnpm typecheck`    | `tsc --noEmit`                  |
+| `pnpm format`       | Prettier で全ファイル整形       |
+| `pnpm format:check` | Prettier の整形チェック (CI 用) |
+| `pnpm search-index` | 検索インデックスのみ再生成      |
 
 ## ディレクトリ
 
@@ -75,3 +77,12 @@ description: ページ説明 (任意)
 - カラートークン: [app/globals.css](app/globals.css) の `:root` / `.dark` ブロック
 - Markdown のスタイリング: [components/mdx/components.tsx](components/mdx/components.tsx)
 - Hero コピー / ボタン: [app/page.tsx](app/page.tsx)
+
+## デプロイ
+
+`pnpm build` の生成物を Next.js ホスティング (Vercel など) に乗せるだけで動く。
+追加のサーバーサイド処理はないため、静的に近い形で配信できる。
+
+## ライセンス
+
+[MIT](LICENSE)。バンドルしている Lexend フォントは [SIL Open Font License (OFL)](public/OFL.txt) の下で配布されている。

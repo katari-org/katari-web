@@ -7,11 +7,7 @@ import { cn } from "@/lib/cn";
 // rehype-pretty-code が生成する <pre> をラップしてコピーボタンを右上に出す。
 // 位置基準を pre 自身にしたいので <pre> を <div> で包んで group / relative
 // を付け、button はその内側で absolute 配置する。
-export function CodeBlockPre({
-  className,
-  children,
-  ...rest
-}: ComponentProps<"pre">) {
+export function CodeBlockPre({ className, children, ...rest }: ComponentProps<"pre">) {
   const preRef = useRef<HTMLPreElement>(null);
   const [copied, setCopied] = useState(false);
   const [forceVisible, setForceVisible] = useState(false);

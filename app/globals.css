@@ -98,8 +98,7 @@
   --color-highlight: var(--highlight);
   --color-ring: var(--ring);
 
-  --font-sans:
-    var(--font-dm-sans), var(--font-noto-sans-jp), system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), var(--font-noto-sans-jp), system-ui, sans-serif;
   --font-mono: var(--font-dm-mono), ui-monospace, monospace;
   /* ブランド名 "Katari" 表示専用。Lexend Tera の Black (900) のみ。 */
   --font-display: var(--font-lexend-tera);
@@ -120,8 +119,7 @@ body {
 }
 
 body {
-  font-family:
-    var(--font-dm-sans), var(--font-noto-sans-jp), system-ui, sans-serif;
+  font-family: var(--font-dm-sans), var(--font-noto-sans-jp), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }

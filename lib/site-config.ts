@@ -5,6 +5,8 @@ export const siteConfig = {
   logo: "/katari.svg",
   description: "A language for orchestrating agents.",
   url: "https://katari-lang.dev",
+  // <html lang="..."> に流す BCP 47 言語タグ。i18n は導入していない。
+  locale: "en",
   copyright: "yukikurage",
   copyrightYear: 2026,
   // 仮 URL。実際のリポジトリに合わせて差し替える。
@@ -30,10 +32,11 @@ export const siteConfig = {
     },
     {
       heading: "Docs",
+      // `{latest}` は Footer が render 時に最新バージョンに置換する。
       items: [
-        { label: "Getting Started", href: "/docs" },
-        { label: "Language Reference", href: "/docs" },
-        { label: "Toolchains", href: "/docs" },
+        { label: "Getting Started", href: "/docs/{latest}/getting-started" },
+        { label: "Language Reference", href: "/docs/{latest}/language-reference" },
+        { label: "Toolchains", href: "/docs/{latest}/katari-toolchains" },
       ],
     },
     {

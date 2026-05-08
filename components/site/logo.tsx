@@ -20,12 +20,7 @@ type LogoProps = {
   isLinked?: boolean;
 };
 
-export function Logo({
-  className,
-  size = "md",
-  showText = true,
-  isLinked = true,
-}: LogoProps) {
+export function Logo({ className, size = "md", showText = true, isLinked = true }: LogoProps) {
   const { height, text } = sizeVariants[size];
   return isLinked ? (
     <Link
@@ -49,9 +44,7 @@ export function Logo({
     <span className={cn("inline-flex items-center gap-1", height, className)}>
       <LogoMark className={"h-full"} />
       {showText && (
-        <span
-          className={`font-display ${text} tracking-tight uppercase leading-none`}
-        >
+        <span className={`font-display ${text} tracking-tight uppercase leading-none`}>
           {siteConfig.name}
         </span>
       )}

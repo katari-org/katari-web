@@ -1,11 +1,8 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { compileMDX } from "next-mdx-remote/rsc";
-import remarkGfm from "remark-gfm";
-import rehypeSlug from "rehype-slug";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypePrettyCode from "rehype-pretty-code";
-import { getDoc, listAllSlugs } from "@/lib/docs";
+import { getDoc, listAllSlugs } from "@/lib/content";
+import { mdxOptions } from "@/lib/mdx/options";
 import { mdxComponents } from "@/components/mdx/components";
 import { CopyMarkdownButton } from "@/components/docs/copy-markdown-button";
 
@@ -21,10 +18,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { version, slug } = await params;
   const doc = getDoc(version, slug);
   if (!doc) return {};
+  const { title, description } = doc.frontmatter;
+  // Next.js は子ページで `openGraph` を上書きすると、親レイアウトに自動挿入された
+  // images を引き継がない。app/opengraph-image.tsx の出力を明示的に再指定する必要がある。
+  const ogImages = ["/opengraph-image"];
   return {
-    title: doc.frontmatter.title,
-    description: doc.frontmatter.description,
+    title,
+    description,
+    openGraph: { title, description, type: "article", images: ogImages },
+    twitter: { card: "summary_large_image", title, description, images: ogImages },
   };
+}
+
+// CopyMarkdownButton が使う、frontmatter を h1 + description として復元したテキスト。
+function toRawMarkdown(title: string, description: string | undefined, body: string): string {
+  return [`# ${title}`, description ?? "", body].filter(Boolean).join("\n\n");
 }
 
 export default async function DocPage({ params }: Props) {
@@ -35,37 +43,10 @@ export default async function DocPage({ params }: Props) {
   const { content } = await compileMDX({
     source: doc.body,
     components: mdxComponents,
-    options: {
-      mdxOptions: {
-        remarkPlugins: [remarkGfm],
-        rehypePlugins: [
-          rehypeSlug,
-          [
-            rehypeAutolinkHeadings,
-            {
-              behavior: "wrap",
-              properties: { className: ["heading-anchor"] },
-            },
-          ],
-          [
-            rehypePrettyCode,
-            {
-              theme: { light: "github-light", dark: "github-dark" },
-              keepBackground: false,
-            },
-          ],
-        ],
-      },
-    },
+    options: { mdxOptions },
   });
 
-  const markdownText = [
-    `# ${doc.frontmatter.title}`,
-    doc.frontmatter.description ?? "",
-    doc.body,
-  ]
-    .filter(Boolean)
-    .join("\n\n");
+  const markdownText = toRawMarkdown(doc.frontmatter.title, doc.frontmatter.description, doc.body);
 
   return (
     <article className="mx-auto max-w-3xl">
@@ -77,9 +58,7 @@ export default async function DocPage({ params }: Props) {
           <CopyMarkdownButton markdown={markdownText} />
         </div>
         {doc.frontmatter.description && (
-          <p className="text-base text-muted-foreground">
-            {doc.frontmatter.description}
-          </p>
+          <p className="text-base text-muted-foreground">{doc.frontmatter.description}</p>
         )}
       </header>
       <div className="prose-content">{content}</div>

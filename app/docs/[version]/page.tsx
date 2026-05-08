@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { getNavigation } from "@/lib/docs";
+import { getNavigation } from "@/lib/content";
 
 type Props = {
   params: Promise<{ version: string }>;

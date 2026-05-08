@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getNavigation, listVersions } from "@/lib/docs";
+import { getNavigation, listVersions } from "@/lib/content";
 import { Sidebar } from "@/components/docs/sidebar";
 import { SidebarScrollContainer } from "@/components/docs/sidebar-scroll-container";
 

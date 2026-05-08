@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { siteConfig } from "@/lib/site-config";
-import { latestVersion } from "@/lib/docs";
+import { latestVersion } from "@/lib/content";
 import { Logo } from "./logo";
 import { ThemeToggle } from "./theme-toggle";
 import { GithubIcon } from "./icons";
-import { SearchTrigger } from "@/components/docs/search-dialog";
+import { SearchTrigger } from "@/components/docs/search/search-trigger";
 import { HeaderShell } from "./header-shell";
 
 export function Header() {

@@ -2,12 +2,20 @@
   "name": "katari-web",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.10"
+  },
+  "packageManager": "pnpm@9.15.9",
   "scripts": {
     "dev": "pnpm run search-index && next dev",
     "build": "pnpm run search-index && next build",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "search-index": "tsx scripts/build-search-index.ts"
   },
   "dependencies": {
@@ -25,7 +33,8 @@
     "rehype-slug": "^6.0.0",
     "remark-gfm": "^4.0.1",
     "shiki": "^4.0.2",
-    "tailwind-merge": "^3.5.0"
+    "tailwind-merge": "^3.5.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -35,8 +44,10 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "prettier": "^3.8.3",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vitest": "^4.1.5"
   }
 }

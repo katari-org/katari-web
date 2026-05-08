@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Network, Zap, Layers, Wrench } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { LogoMark } from "@/components/site/logo";
-import { latestVersion } from "@/lib/docs";
+import { latestVersion } from "@/lib/content";
 
 export default function Home() {
   const version = latestVersion();
@@ -12,8 +12,7 @@ export default function Home() {
       icon: Network,
       title: "Agent Networks",
       href: `/docs/${version}/getting-started`,
-      description:
-        "Compose multi-agent systems with clear delegation and communication patterns.",
+      description: "Compose multi-agent systems with clear delegation and communication patterns.",
     },
     {
       icon: Zap,
@@ -26,8 +25,7 @@ export default function Home() {
       icon: Layers,
       title: "Expressive Types",
       href: `/docs/${version}/language-reference/types`,
-      description:
-        "Subtyping, type inference, and pattern matching. Catch errors at compile time.",
+      description: "Subtyping, type inference, and pattern matching. Catch errors at compile time.",
     },
     {
       icon: Wrench,
@@ -82,10 +80,9 @@ export default function Home() {
             Why Katari?
           </h2>
           <p className="text-muted-foreground font-light text-lg max-w-xl">
-            Building agent networks is inherently complex. Katari is a language
-            designed from the ground up to orchestrate agents — with a
-            structured effect system, expressive types, and a complete
-            toolchain.
+            Building agent networks is inherently complex. Katari is a language designed from the
+            ground up to orchestrate agents — with a structured effect system, expressive types, and
+            a complete toolchain.
           </p>
         </div>
       </section>
@@ -99,9 +96,7 @@ export default function Home() {
               className="flex flex-col gap-3 border border-border p-6 hover:bg-muted hover:border-border-strong transition-colors"
             >
               <Icon className="size-6" />
-              <h3 className="font-display-text font-semibold text-base">
-                {title}
-              </h3>
+              <h3 className="font-display-text font-semibold text-base">{title}</h3>
               <p className="text-muted-foreground font-light text-sm leading-relaxed">
                 {description}
               </p>

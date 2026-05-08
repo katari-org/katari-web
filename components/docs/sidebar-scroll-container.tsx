@@ -3,11 +3,7 @@
 import { useRef, useLayoutEffect } from "react";
 import { usePathname } from "next/navigation";
 
-export function SidebarScrollContainer({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function SidebarScrollContainer({ children }: { children: React.ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   const savedScrollTop = useRef(0);
   const pathname = usePathname();
