@@ -18,6 +18,7 @@ export default async function DocsVersionLayout({ children, params }: Props) {
 
   return (
     <div className="mx-auto w-full max-w-380 px-4 sm:px-6 lg:px-8">
+      <div aria-hidden className="fixed inset-0 -z-4 bg-background/80" />
       <div className="lg:grid lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-8">
         <aside className="hidden py-10 lg:block">
           <SidebarScrollContainer>

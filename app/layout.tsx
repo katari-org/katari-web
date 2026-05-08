@@ -71,6 +71,10 @@ export default function RootLayout({
       className={`${lexend.variable} ${lexendTera.variable} ${dmMono.variable} ${dmSans.variable} ${notoSansJP.variable}`}
     >
       <body className="min-h-screen flex flex-col bg-background text-foreground -z-10 relative">
+        <div
+          aria-hidden
+          className="fixed pointer-events-none top-1/6 dark:-top-1/6 -translate-y-1/2 left-1/2 -translate-x-1/2 size-[max(140rem,280vh)] -z-5 rounded-full bg-[radial-gradient(closest-side,var(--muted),transparent_70%)]"
+        />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

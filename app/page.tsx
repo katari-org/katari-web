@@ -41,14 +41,10 @@ export default function Home() {
   return (
     <>
       <section className="flex flex-1 flex-col items-center justify-center px-6 py-32 text-center sm:py-32 relative gap-24 min-h-[clamp(10rem,70vh,70rem)]">
-        <span
-          aria-hidden
-          className="fixed pointer-events-none -top-1/5 -translate-y-1/2 left-1/2 -translate-x-1/2 size-[max(140rem,280vh)] -z-2 rounded-full bg-[radial-gradient(closest-side,var(--muted),transparent_70%)]"
-        />
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-24">
           <div className="mx-auto flex max-w-full flex-col items-center gap-6">
             <h1 className="font-display font-black tracking-tight text-6xl sm:text-7xl md:text-8xl flex flex-col items-center justify-center">
-              <LogoMark className="absolute size-60 md:size-72 text-background -z-1 drop-shadow-md drop-shadow-black/10" />
+              <LogoMark className="absolute size-60 md:size-72 text-background -z-1 drop-shadow-md drop-shadow-accent-950/5" />
               KATARI
             </h1>
 

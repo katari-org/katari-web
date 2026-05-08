@@ -20,7 +20,7 @@ export function VersionSwitcher({ versions, current }: VersionSwitcherProps) {
             router.push(`/docs/${next}`);
           }
         }}
-        className="h-9 w-full appearance-none border border-border bg-background pl-3 pr-9 text-sm font-medium transition-colors hover:border-border-strong hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-border focus:ring-offset-2 focus:ring-offset-background"
+        className="h-9 w-full appearance-none border border-border pl-3 pr-9 text-sm font-medium transition-colors hover:border-border-strong hover:cursor-pointer focus:outline-none focus:ring-2 focus:ring-border focus:ring-offset-2 focus:ring-offset-background"
         aria-label="Documentation version"
       >
         {versions.map((v) => (

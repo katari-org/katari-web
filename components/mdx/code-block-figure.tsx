@@ -44,7 +44,7 @@ export function CodeBlockPre({
         onClick={onCopy}
         aria-label={ariaLabel}
         className={cn(
-          "absolute top-2 right-2 inline-flex size-8 items-center justify-center bg-background border border-border text-muted-foreground transition-all hover:text-foreground hover:border-border-strong hover:cursor-pointer",
+          "absolute top-2 right-2 inline-flex size-8 items-center justify-center border border-border text-foreground transition-all hover:bg-muted hover:border-border-strong hover:cursor-pointer",
           forceVisible ? "opacity-100" : "opacity-0 group-hover:opacity-100",
         )}
       >

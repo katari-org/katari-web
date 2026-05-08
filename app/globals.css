@@ -57,7 +57,7 @@
   --border: var(--color-paper-200);
   --border-strong: var(--color-paper-300);
   --card: var(--color-paper-50);
-  --accent: var(--color-katari-900);
+  --accent: var(--color-paper-900);
   --accent-foreground: var(--color-paper-50);
   --highlight: var(--color-highlight-500);
   --ring: var(--color-highlight-500);
@@ -127,7 +127,8 @@ body {
 }
 
 ::selection {
-  background-color: color-mix(in oklab, var(--highlight) 30%, transparent);
+  background-color: var(--accent);
+  color: var(--accent-foreground);
 }
 
 /* === rehype-pretty-code (Shiki) =========================================== */
@@ -143,12 +144,13 @@ body {
 
 [data-rehype-pretty-code-figure] pre {
   padding: 1rem;
-  background-color: var(--muted);
+  background-color: color-mix(in oklab, var(--muted) 50%, transparent);
   overflow-x: auto;
   font-family: var(--font-dm-mono), ui-monospace, monospace;
   font-size: 0.875rem;
   line-height: 1.6;
   width: 100%;
+  border: 1px solid var(--border);
 }
 
 [data-rehype-pretty-code-figure] code {
@@ -191,5 +193,4 @@ html.dark [data-rehype-pretty-code-figure] pre code span {
   font-size: 0.75rem;
   font-family: var(--font-dm-mono), ui-monospace, monospace;
   color: var(--foreground);
-  background-color: var(--background);
 }

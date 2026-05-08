@@ -82,14 +82,13 @@ export const mdxComponents: MDXComponents = {
   },
   // インラインコード。コードブロック (language-* クラス付き) には何もしない。
   code: ({ className, ...rest }) => {
-    const isBlock =
-      typeof className === "string" && className.includes("language-");
+    const isBlock = "data-language" in (rest as Record<string, unknown>);
     if (isBlock) {
       return <code className={className} {...rest} />;
     }
     return (
       <code
-        className={`px-1.5 py-0.5 font-mono text-sm bg-muted ${className ?? ""}`}
+        className={`px-1.5 py-0.5 font-mono text-sm bg-muted/50 border border-border ${className ?? ""}`}
         {...rest}
       />
     );
