@@ -78,10 +78,20 @@ description: ページ説明 (任意)
 - Markdown のスタイリング: [components/mdx/components.tsx](components/mdx/components.tsx)
 - Hero コピー / ボタン: [app/page.tsx](app/page.tsx)
 
-## デプロイ
+## デプロイ (Cloudflare Workers Static Assets)
 
-`pnpm build` の生成物を Next.js ホスティング (Vercel など) に乗せるだけで動く。
-追加のサーバーサイド処理はないため、静的に近い形で配信できる。
+`output: "export"` で静的書き出しした `out/` を Cloudflare Workers Static Assets で
+配信する。Worker スクリプトは持たず、純粋に CDN 上で静的ファイルを返す構成。
+
+```sh
+pnpm cf:deploy           # pnpm build → wrangler deploy
+pnpm cf:dev              # ローカルで wrangler dev (Cloudflare 互換ランタイム)
+pnpm cf:preview          # 本番未昇格の preview version をアップロード
+```
+
+設定は [wrangler.jsonc](wrangler.jsonc) に集約。`name` を変えればデプロイ先 Worker
+名を変更できる。`out/_headers` (= `public/_headers`) で `/opengraph-image` の
+`Content-Type` を `image/png` に指定している。
 
 ## ライセンス
 

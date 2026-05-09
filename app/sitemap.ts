@@ -2,6 +2,9 @@ import type { MetadataRoute } from "next";
 import { latestVersion, listAllSlugs, listVersions } from "@/lib/content";
 import { siteConfig } from "@/lib/site-config";
 
+// `output: "export"` で静的生成するため。
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = siteConfig.url.replace(/\/$/, "");
   const lastModified = new Date();

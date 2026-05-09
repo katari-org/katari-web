@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site-config";
 
+// `output: "export"` で静的生成するため。
+export const dynamic = "force-static";
+
 export default function robots(): MetadataRoute.Robots {
   const base = siteConfig.url.replace(/\/$/, "");
   return {

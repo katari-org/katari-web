@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { siteConfig } from "@/lib/site-config";
+import { resolveSiteHref, siteConfig } from "@/lib/site-config";
 import { latestVersion } from "@/lib/content";
 import { Logo } from "./logo";
 import { ThemeToggle } from "./theme-toggle";
@@ -14,6 +14,8 @@ export function Header() {
   } catch {
     version = undefined;
   }
+  // version が解決できない場合は redirect ページを通す fallback。
+  const resolveHref = (href: string) => (version ? resolveSiteHref(href, version) : "/docs");
 
   return (
     <header className="sticky top-0 z-40 w-full">
@@ -25,7 +27,7 @@ export function Header() {
               {siteConfig.nav.map((item) => (
                 <Link
                   key={item.href}
-                  href={item.href}
+                  href={resolveHref(item.href)}
                   className="transition-colors hover:text-foreground"
                 >
                   {item.label}

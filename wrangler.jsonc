@@ -1,0 +1,23 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "katari-web",
+  "compatibility_date": "2025-11-01",
+  // Workers Static Assets: ./out をそのまま CDN 配信する。
+  // - not_found_handling: 404-page → asset miss 時に out/404.html を返す
+  // - html_handling: auto-trailing-slash (既定) → /docs/v0.1 を docs/v0.1.html に解決
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash",
+  },
+  "routes": [
+    {
+      "pattern": "katari-lang.dev",
+      "custom_domain": true,
+    },
+    {
+      "pattern": "www.katari-lang.dev",
+      "custom_domain": true,
+    },
+  ],
+}

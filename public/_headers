@@ -1,0 +1,12 @@
+# 拡張子なしの opengraph-image (Top + 各 docs ページ) を PNG として配信する。
+/opengraph-image
+  Content-Type: image/png
+  Cache-Control: public, max-age=3600
+
+/api/og/*/og.png
+  Content-Type: image/png
+  Cache-Control: public, max-age=3600
+
+# 検索インデックス JSON は immutable に近い扱い (ビルド単位で再生成)。
+/search-index/*
+  Cache-Control: public, max-age=300, stale-while-revalidate=86400

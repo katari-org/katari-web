@@ -42,7 +42,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-24">
           <div className="mx-auto flex max-w-full flex-col items-center gap-6">
             <h1 className="font-display font-black tracking-tight text-6xl sm:text-7xl md:text-8xl flex flex-col items-center justify-center">
-              <LogoMark className="absolute size-60 md:size-72 text-background -z-1 drop-shadow-md drop-shadow-accent-950/5" />
+              <LogoMark className="absolute size-60 md:size-72 text-background -z-1 drop-shadow-md drop-shadow-paper-950/5" />
               KATARI
             </h1>
 
@@ -54,7 +54,7 @@ export default function Home() {
 
         <div className="flex flex-col gap-3 sm:flex-row">
           <Link
-            href="/docs"
+            href={`/docs/${version}/getting-started`}
             className="inline-flex h-11 items-center justify-center gap-2
             px-6 text-base font-display-text font-normal text-accent-foreground transition-all hover:opacity-80
             bg-highlight

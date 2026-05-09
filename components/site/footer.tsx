@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { siteConfig } from "@/lib/site-config";
+import { resolveSiteHref, siteConfig } from "@/lib/site-config";
 import { latestVersion } from "@/lib/content";
 import { Logo } from "./logo";
 
@@ -8,7 +8,7 @@ export function Footer() {
   // `latestVersion()` は filesystem を参照する Node API のため、
   // Footer は Server Component のままで動作する。
   const version = latestVersion();
-  const resolveHref = (href: string) => href.replaceAll("{latest}", version);
+  const resolveHref = (href: string) => resolveSiteHref(href, version);
 
   return (
     <footer>

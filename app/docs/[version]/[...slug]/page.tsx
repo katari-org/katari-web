@@ -5,6 +5,7 @@ import { getDoc, listAllSlugs } from "@/lib/content";
 import { mdxOptions } from "@/lib/mdx/options";
 import { mdxComponents } from "@/components/mdx/components";
 import { CopyMarkdownButton } from "@/components/docs/copy-markdown-button";
+import { ogImageHref } from "@/lib/og/og-id";
 
 type Props = {
   params: Promise<{ version: string; slug: string[] }>;
@@ -19,14 +20,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const doc = getDoc(version, slug);
   if (!doc) return {};
   const { title, description } = doc.frontmatter;
-  // Next.js は子ページで `openGraph` を上書きすると、親レイアウトに自動挿入された
-  // images を引き継がない。app/opengraph-image.tsx の出力を明示的に再指定する必要がある。
-  const ogImages = ["/opengraph-image"];
+  // 動的 OG: API ルートで build 時に SSG 化した PNG を参照する。
+  // `[...slug]` 直下に opengraph-image / 固定 segment を置けないため、
+  // (version, slug) を `--` で flatten した単一 segment ID に encode した URL を使う。
+  const ogImage = ogImageHref(version, slug);
   return {
     title,
     description,
-    openGraph: { title, description, type: "article", images: ogImages },
-    twitter: { card: "summary_large_image", title, description, images: ogImages },
+    openGraph: { title, description, type: "article", images: [ogImage] },
+    twitter: { card: "summary_large_image", title, description, images: [ogImage] },
   };
 }
 
