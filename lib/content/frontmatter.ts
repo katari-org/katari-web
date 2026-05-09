@@ -5,6 +5,7 @@ import { z } from "zod";
 const docFrontmatterSchema = z.object({
   title: z.string().min(1),
   description: z.string().optional(),
+  hero: z.string().optional(),
 });
 
 export type DocFrontmatter = z.infer<typeof docFrontmatterSchema>;

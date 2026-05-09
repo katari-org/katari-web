@@ -42,7 +42,7 @@ export function Header() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub repository"
-              className="inline-flex h-9 w-9 items-center justify-center text-muted-foreground transition-colors hover:bg-muted hover:text-foreground hover:cursor-pointer"
+              className="inline-flex h-9 w-9 items-center justify-center text-muted-foreground transition-colors hover:text-foreground hover:cursor-pointer"
             >
               <GithubIcon className="size-5" />
             </Link>

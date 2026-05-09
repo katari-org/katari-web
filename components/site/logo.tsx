@@ -26,7 +26,7 @@ export function Logo({ className, size = "md", showText = true, isLinked = true 
     <Link
       href="/"
       className={cn(
-        "inline-flex items-center gap-1 group hover:opacity-80 hover:gap-2 transition-all",
+        "inline-flex items-center gap-1 group hover:opacity-80 hover:gap-1.5 transition-all",
         height,
         className,
       )}

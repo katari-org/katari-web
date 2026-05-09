@@ -39,7 +39,12 @@ function DialogBody({ version, onClose }: { version: string; onClose: () => void
           onKeyDown={onKeyDown}
           className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
         />
-        <kbd className="px-1.5 py-0.5 text-xs text-muted-foreground">esc</kbd>
+        <kbd
+          className="px-1.5 py-0.5 text-xs text-muted-foreground hover:text-foreground cursor-pointer transition-colors"
+          onClick={onClose}
+        >
+          esc
+        </kbd>
       </div>
       <div className="max-h-[60vh] overflow-y-auto p-2">
         <SearchResults
@@ -56,7 +61,7 @@ function DialogBody({ version, onClose }: { version: string; onClose: () => void
 
 function LoadingShell() {
   return (
-    <div className="w-full max-w-xl bg-background p-6 text-center text-sm text-muted-foreground shadow-2xl">
+    <div className="w-full max-w-xl bg-background p-6 text-center text-sm text-muted-foreground shadow-2xl border border-border">
       Loading…
     </div>
   );

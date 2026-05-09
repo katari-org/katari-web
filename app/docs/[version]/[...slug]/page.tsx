@@ -1,10 +1,11 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { compileMDX } from "next-mdx-remote/rsc";
-import { getDoc, listAllSlugs } from "@/lib/content";
+import { getAdjacentDocs, getDoc, listAllSlugs } from "@/lib/content";
 import { mdxOptions } from "@/lib/mdx/options";
-import { mdxComponents } from "@/components/mdx/components";
+import { buildMdxComponents } from "@/components/mdx/components";
 import { CopyMarkdownButton } from "@/components/docs/copy-markdown-button";
+import { DocPagination } from "@/components/docs/doc-pagination";
 import { ogImageHref } from "@/lib/og/og-id";
 
 type Props = {
@@ -42,13 +43,15 @@ export default async function DocPage({ params }: Props) {
   const doc = getDoc(version, slug);
   if (!doc) notFound();
 
+  const ctx = { version, slug };
   const { content } = await compileMDX({
     source: doc.body,
-    components: mdxComponents,
+    components: buildMdxComponents(ctx),
     options: { mdxOptions },
   });
 
   const markdownText = toRawMarkdown(doc.frontmatter.title, doc.frontmatter.description, doc.body);
+  const { prev, next } = getAdjacentDocs(version, slug);
 
   return (
     <article className="mx-auto max-w-3xl">
@@ -64,6 +67,7 @@ export default async function DocPage({ params }: Props) {
         )}
       </header>
       <div className="prose-content">{content}</div>
+      <DocPagination prev={prev} next={next} />
     </article>
   );
 }

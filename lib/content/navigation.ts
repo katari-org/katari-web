@@ -25,6 +25,8 @@ export type NavTree = {
   sections: NavSection[];
 };
 
+export type AdjacentDocs = { prev?: NavItem; next?: NavItem };
+
 function applyOrder<T extends string>(items: T[], order?: T[]): T[] {
   if (!order || order.length === 0) return [...items].sort();
   const set = new Set(items);
@@ -81,5 +83,25 @@ export function getNavigation(version: string): NavTree {
     version,
     versionLabel: versionMeta.label ?? version,
     sections,
+  };
+}
+
+function slugEquals(a: string[], b: string[]): boolean {
+  if (a.length !== b.length) return false;
+  return a.every((segment, index) => segment === b[index]);
+}
+
+/**
+ * 同 version の nav 順 (= `_meta.json.order`) で section を flatten し、
+ * 与えられた slug の前後にある doc を返す。section 跨ぎは連続する。
+ */
+export function getAdjacentDocs(version: string, slug: string[]): AdjacentDocs {
+  const nav = getNavigation(version);
+  const flat = nav.sections.flatMap((section) => section.items);
+  const index = flat.findIndex((item) => slugEquals(item.slug, slug));
+  if (index < 0) return {};
+  return {
+    prev: index > 0 ? flat[index - 1] : undefined,
+    next: index < flat.length - 1 ? flat[index + 1] : undefined,
   };
 }

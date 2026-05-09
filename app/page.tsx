@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Network, Zap, Layers, Wrench } from "lucide-react";
 import { siteConfig } from "@/lib/site-config";
 import { LogoMark } from "@/components/site/logo";
+import { FeatureCard } from "@/components/site/feature-card";
 import { latestVersion } from "@/lib/content";
 
 export default function Home() {
@@ -42,7 +43,7 @@ export default function Home() {
         <div className="mx-auto flex max-w-3xl flex-col items-center gap-24">
           <div className="mx-auto flex max-w-full flex-col items-center gap-6">
             <h1 className="font-display font-black tracking-tight text-6xl sm:text-7xl md:text-8xl flex flex-col items-center justify-center">
-              <LogoMark className="absolute size-60 md:size-72 text-background -z-1 drop-shadow-md drop-shadow-paper-950/5" />
+              <LogoMark className="absolute size-60 md:size-72 text-paper-100 dark:text-background -z-1 dark:drop-shadow-none" />
               KATARI
             </h1>
 
@@ -89,18 +90,8 @@ export default function Home() {
 
       <section className="px-6 pb-32">
         <div className="mx-auto max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {featureCards.map(({ icon: Icon, title, href, description }) => (
-            <Link
-              key={title}
-              href={href}
-              className="flex flex-col gap-3 border border-border p-6 hover:bg-muted hover:border-border-strong transition-colors"
-            >
-              <Icon className="size-6" />
-              <h3 className="font-display-text font-semibold text-base">{title}</h3>
-              <p className="text-muted-foreground font-light text-sm leading-relaxed">
-                {description}
-              </p>
-            </Link>
+          {featureCards.map((card) => (
+            <FeatureCard key={card.title} {...card} />
           ))}
         </div>
       </section>

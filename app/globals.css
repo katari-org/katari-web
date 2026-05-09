@@ -7,17 +7,17 @@
  * ユーティリティクラスが自動生成される。
  */
 @theme {
-  --color-highlight-50: oklch(0.947 0.076 180.56);
-  --color-highlight-100: oklch(0.915 0.129 177.46);
-  --color-highlight-200: oklch(0.866 0.164 174.63);
-  --color-highlight-300: oklch(0.784 0.145 177.7);
-  --color-highlight-400: oklch(0.69 0.124 181.15);
-  --color-highlight-500: oklch(0.608 0.108 183.44);
-  --color-highlight-600: oklch(0.524 0.092 185.91);
-  --color-highlight-700: oklch(0.438 0.076 189.76);
-  --color-highlight-800: oklch(0.346 0.059 193.07);
-  --color-highlight-900: oklch(0.262 0.045 194.76);
-  --color-highlight-950: oklch(0.221 0.038 197.74);
+  --color-highlight-50: oklch(0.937 0.093 177.13);
+  --color-highlight-100: oklch(0.892 0.164 178.26);
+  --color-highlight-200: oklch(0.826 0.149 179.05);
+  --color-highlight-300: oklch(0.751 0.138 177.93);
+  --color-highlight-400: oklch(0.674 0.124 177.62);
+  --color-highlight-500: oklch(0.59 0.109 177.01);
+  --color-highlight-600: oklch(0.515 0.096 175.78);
+  --color-highlight-700: oklch(0.437 0.082 176.09);
+  --color-highlight-800: oklch(0.362 0.069 174.34);
+  --color-highlight-900: oklch(0.279 0.054 172.85);
+  --color-highlight-950: oklch(0.243 0.047 173.37);
 
   --color-katari-50: oklch(0.931 0.004 271.53);
   --color-katari-100: oklch(0.897 0.006 264.6);
@@ -57,7 +57,7 @@
   --border: var(--color-paper-200);
   --border-strong: var(--color-paper-300);
   --card: var(--color-paper-50);
-  --accent: var(--color-paper-900);
+  --accent: var(--color-katari-900);
   --accent-foreground: var(--color-paper-50);
   --highlight: var(--color-highlight-500);
   --ring: var(--color-highlight-500);
@@ -77,8 +77,8 @@
   --card: var(--color-katari-900);
   --accent: var(--color-katari-50);
   --accent-foreground: var(--color-katari-950);
-  --highlight: var(--color-highlight-400);
-  --ring: var(--color-highlight-400);
+  --highlight: var(--color-highlight-300);
+  --ring: var(--color-highlight-300);
 }
 
 /* === Tailwind utility class へ展開 ========================================
@@ -164,6 +164,13 @@ body {
   margin-right: 1rem;
   text-align: right;
   color: var(--subtle-foreground);
+}
+
+[data-rehype-pretty-code-figure] pre code span {
+  color: var(--shiki-light) !important;
+  font-style: var(--shiki-light-font-style) !important;
+  font-weight: var(--shiki-light-font-weight) !important;
+  text-decoration: var(--shiki-light-text-decoration) !important;
 }
 
 html.dark [data-rehype-pretty-code-figure] pre code span {
